@@ -3,10 +3,30 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="jakarta.faces.core"
       xmlns:h="jakarta.faces.html">
-<f:view>
-    <h:head></h:head>
-    <h:body>
+<h:head>
+    <title>#{AppMessages['title.login']}</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel for="usernameField" value="#{AppMessages['label.user']}"/>
+            <h:inputText id="usernameField" value="#{loginBean.username}" required="true" requiredMessage="#{AppMessages['validation.user']}"/>
+            <h:message for="usernameField"/>
 
-    </h:body>
-</f:view>
+            <h:outputLabel for="passwordField" value="#{AppMessages['label.password']}"/>
+            <h:inputSecret id="passwordField" value="#{loginBean.password}" validatorMessage="#{AppMessages['validation.password']}">
+                <f:validateLength minimum="4" maximum="6"/>
+            </h:inputSecret>
+            <h:message for="passwordField"/>
+
+            <h:panelGroup/>
+            <h:commandButton id="loginButton" value="#{AppMessages['label.login']}" action="#{loginBean.login()}" binding="#{loginBean.loginButton}" disabled="true"/>
+            <h:panelGroup/>
+        </h:panelGrid>
+        <h:selectBooleanCheckbox id="acceptCheckBox" binding="#{loginBean.acceptCheckbox}" valueChangeListener="#{loginBean.activateButton}" immediate="true">
+            <f:ajax execute="@this" render="loginButton" />
+        </h:selectBooleanCheckbox>
+        <h:outputText value="I accept the terms of service"/>
+    </h:form>
+</h:body>
 </html>

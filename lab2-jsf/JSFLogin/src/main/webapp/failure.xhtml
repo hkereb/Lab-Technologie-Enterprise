@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<h:head>
+    <title>#{AppMessages['page.title.sorry']}</title>
+</h:head>
+<h:body>
+    <h3>#{AppMessages['text.sorry']}#{' '}#{loginBean.username}...</h3>
+    <h:form>
+        <h:commandLink value="#{AppMessages['label.back']}" action="index"/>
+    </h:form>
+</h:body>
+</html>
